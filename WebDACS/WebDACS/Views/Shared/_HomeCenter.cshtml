@@ -1,0 +1,510 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css/trangchu")
+</head>
+@{
+    var ses = Session["Users"] as WebDACS.Models.Users;
+}
+<body>
+    <header>
+        <div class="header">
+            <div class="container">
+                <!-- header logo -->
+                <div class="header-logo">
+                    <a class="logo" href="https://localhost:44307/Film/Home" title="Xem phim mới chất lượng HD"><span></span></a>
+                </div>
+
+                <!-- MAIN search() -->
+                <div class="search">
+                    <input type="text" placeholder="Tìm: tên phim, đạo diễn, diễn viên" id="searchInput" name="a" onkeydown="EnterKey(event);" />
+                    <a class="submit" id="bounceEaseOut" onclick="return do_search(2);"></a>
+                    <a href="#" onclick="return timnhanh();" class="timnhanh"></a>
+                </div>
+                <!-- MAIN user_login() -->
+                @if (ses == null)
+                {
+                    <div class="widget_user_header">
+                        <div class="btn-group">
+                            <button type="button" class="btn-bdown username btn-small">Xin chào: @ses.Displayname</button>
+                            <div class="dropdown">
+                                <button class="btn-bdown dropdown-toggle btn-small" onclick="myclick()">
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu" id="dropinfouser">
+                                    <a href="">Thay đổi thông tin </a>
+                                    <a href="">Đổi mật khẩu</a>
+                                    <a href="">Thoát</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <nav>
+                <div class="container">
+                    <ul id="mega-menu-1">
+                        <li><a href="https://localhost:44307/Film/Home">Home</a></li>
+                        <li>
+                            <a class="dc-mega">Thể loại<span class="dc-mega-icon"></span></a>
+                            <div class="sub-container" style="top: 45px; z-index: 1000;">
+                                <ul class="sub">
+                                    <li><a href="">Phim hành động</a></li>
+                                    <li><a href="">Phim kinh dị - ma</a></li>
+                                    <li><a href="">Phim hài hước</a></li>
+                                    <li><a href="">Phim hoạt hình</a></li>
+                                    <li><a href="">Phim tình cảm</a></li>
+                                    <li><a href="">Phim tâm lý</a></li>
+                                    <li><a href="">Phim võ thuật</a></li>
+                                    <li><a href="">Phim viễn tưởng</a></li>
+                                    <li><a href="">Phim thần thoại</a></li>
+                                    <li><a href="">Phim Dã Sử</a></li>
+                                    <li><a href="">Phim Tội Phạm</a></li>
+                                    <li><a href="">Phim Cổ Trang</a></li>
+                                    <li><a href="">Phim chiến tranh</a></li>
+                                    <li><a href="">Phim phiêu lưu</a></li>
+                                    <li><a href="">Phim Kiếm Hiệp</a></li>
+                                    <li><a href="">Phim Âm nhạc</a></li>
+                                    <li><a href="">Phim Thể Thao</a></li>
+                                    <li><a href="">Phim hình sự</a></li>
+                                    <li><a href="">Phim Tổng Hợp</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="dc-mega">Quốc gia<span class="dc-mega-icon"></span></a>
+                            <div class="sub-container" style="top: 45px; z-index: 1000;">
+                                <ul class="sub">
+                                    <li><a href="">Phim Mỹ</a></li>
+                                    <li><a href="">Phim Trung Quốc</a></li>
+                                    <li><a href="">Phim Hàn Quốc</a></li>
+                                    <li><a href="">Phim Việt Nam</a></li>
+                                    <li><a href="">Phim Nhật Bản</a></li>
+                                    <li><a href="">Phim Thái Lan</a></li>
+                                    <li><a href="">Phim Pháp</a></li>
+                                    <li><a href="">Phim Ấn Độ</a></li>
+                                    <li><a href="">Phim Nga</a></li>
+                                    <li><a href="">Phim Châu Á</a></li>
+                                    <li><a href="">Phim Châu Âu</a></li>
+                                    <li><a href="">Phim Hồng Kông</a></li>
+                                    <li><a href="">Phim Đài Loan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="dc-mega" href="">Xem phim mới<span class="dc-mega-icon"></span></a>
+                            <div class="sub-container" style="top: 45px; z-index: 1000;">
+                                <ul class="sub">
+                                    <li><a href="">Phim 2015</a></li>
+                                    <li><a href="">Phim 2014</a></li>
+                                    <li><a href="">Phim 2013</a></li>
+                                    <li><a href="">Phim 2012</a></li>
+                                    <li><a href="">Phim 2011</a></li>
+                                    <li><a href="">Phim 2010</a></li>
+                                    <li><a href="">Phim 2009</a></li>
+                                    <li><a href="">Phim 2008</a></li>
+                                    <li><a href="">Phim 2007</a></li>
+                                    <li><a href="">Phim 2006</a></li>
+                                    <li><a href="">Phim 2005</a></li>
+                                    <li><a href="/">Phim 2004</a></li>
+                                    <li><a href="">Phim 2003</a></li>
+                                    <li><a href="">Phim 2002</a></li>
+                                    <li><a href="">Phim 2001</a></li>
+                                    <li><a href="">Phim 2000</a></li>
+                                    <li><a href="">Phim 1999</a></li>
+                                    <li><a href="">Phim 1998</a></li>
+                                    <li><a href="">Phim 1997</a></li>
+                                    <li><a href="">Phim 1996</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="https://localhost:44307/Film/Phimle" class="dc-mega">Phim lẻ<span class="dc-mega-icon"></span></a>
+                            <div class="sub-container" style="top: 45px; z-index: 1000;">
+                                <ul class="sub">
+                                    <li><a href="">Phim Mỹ</a></li>
+                                    <li><a href="">Phim Hàn Quốc</a></li>
+                                    <li><a href="">Phim Nhật Bản</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="https://localhost:44307/Film/Phimbo" class="dc-mega">Phim bộ<span class="dc-mega-icon"></span></a>
+                            <div class="sub-container" style="top: 45px; z-index: 1000;">
+                                <ul class="sub">
+                                    <li><a href="">Phim bộ Mỹ</a></li>
+                                    <li><a href="">Phim bộ Hàn Quốc</a></li>
+                                    <li><a href="">Phim bộ Nhật Bản</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="https://localhost:44307/Film/Phimchieurap">Phim Chiếu Rạp</a></li>
+                        <li><a href="">Diễn viên</a></li>
+                        <li><a href="">Yêu cầu</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        @RenderBody()
+        <div class="row top-movie">
+            <div class="col-lg-12">
+                <h2 class="header-list-index" style="margin-top: 0px;">
+                    <span class="title-list-index">PHIM ĐÁNG CHÚ Ý</span>
+                </h2>
+                <div class="top-movie-list block-wrapper">
+                    <div class="list_carousel">
+                        <ul id="movie-carousel-top">
+                            <!-- BEGIN film_menu -->
+                            <!-- #BEGIN phim_de_cu.row -->
+                            <li>
+                                <div class="movie-carousel-top-item">
+                                    <a href="" title="Trăng rơi"></a>
+                                    <img src="~/Content/Images/Phim/Trangroi.jpeg" alt="" width="225" height="299" />
+                                    <div class="movie-carousel-top-item-meta">
+                                        <h3 class="movie-name-1">Trăng rơi</h3>
+                                        <h4 class="movie-name-2">Moonfall(2022)</h4>
+                                        <span class="ribbon" style="top:-235px;">HD Vietsub - 90p</span>
+                                    </div>
+                                </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" title="Người nhện: Không còn nhà">
+                                    <div class="movie-carousel-top-item">
+                                        <img src="~/Content/Images/Phim/Spider - Nowayhome.jpg" alt="Người nhện" title="Người nhện - Không còn nhà - No way home" width="225" height="299" />
+                                        <div class="movie-carousel-top-item-meta">
+                                            <h3 class="movie-name-1">Người nhện - Không còn nhà</h3>
+                                            <h4 class="movie-name-2">Spider Man - No way Home</h4>
+                                            <span class="ribbon" style="top:-235px;">HD Vietsub - 148 phút</span>
+                                            <p class="hidden">{film.INFO}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" title="Trăng rơi">
+                                    <div class="movie-carousel-top-item">
+                                        <img src="~/Content/Images/Phim/Trangroi.jpeg" alt="" width="225" height="299" />
+                                        <div class="movie-carousel-top-item-meta">
+                                            <h3 class="movie-name-1">Trăng rơi</h3>
+                                            <h4 class="movie-name-2">Moonfall(2022)</h4>
+                                            <span class="ribbon" style="top:-235px;">HD Vietsub - 90p</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- #END phim_de_cu.row -->
+                            <!-- END film_menu -->
+                        </ul>
+                        <div class="clear">
+                        </div>
+                        <a id="prevTop" class="prev" rel="nofollow"><span class="arrow-icon left"></span></a>
+                        <a id="nextTop" class="next" rel="nofollow"><span class="arrow-icon right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="one">
+            <div class="movie-list-index">
+                <h2 class="header-list-index-1"><span class="title-list-index">Phim bộ mới cập nhật</span><a class="more-list-index" href="https://localhost:44386/Film/Phimbo" title="phim bộ" rel="nofollow">Xem tất cả</a></h2>
+            </div>
+            <div class="phimbo-movie-list block-wrapper">
+                <div class="phimbo_list_carousel">
+                    <ul id="phimbo-carousel-top">
+                        <!-- BEGIN film_menu -->
+                        <!-- #BEGIN phim_de_cu.row -->
+                        <li>
+                            <a href="" title="">
+                                <div class="phimbo-carousel-top-item">
+                                    <img src="/Content/Images/Phim/onepiece.jpeg" alt="One piêc" title="Vua Hải Tặc" width="225" height="299" />
+                                    <div class="phimbo-carousel-top-item-meta">
+                                        <h3 class="phimbo-name-1">Vua Hải Tặc</h3>
+                                        <h4 class="phimbo-name-2">One Piece</h4>
+                                        <span class="ribbon" style="top:-235px;">Tập 1019/?</span>
+                                        <p class="hidden">{film.INFO}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" title="">
+                                <div class="phimbo-carousel-top-item">
+                                    <img src="~/Content/Images/Phim/Sherlock1.jpg" alt="Sherlock Home" title="Sherlock-Home" width="225" height="299" />
+                                    <div class="phimbo-carousel-top-item-meta">
+                                        <h3 class="phimbo-name-1">Thám tử Sherlock</h3>
+                                        <h4 class="phimbo-name-2">SherLock Home(2010)</h4>
+                                        <span class="ribbon" style="top:-235px;">Tập 3/3</span>
+                                        <p class="hidden">{film.INFO}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" title="">
+                                <div class="phimbo-carousel-top-item">
+                                    <img src="~/Content/Images/Phim/XHTL.jpg" alt="Sherlock Home" title="Sherlock-Home" width="225" height="299" />
+                                    <div class="phimbo-carousel-top-item-meta">
+                                        <h3 class="phimbo-name-1">Xã hội thượng lưu</h3>
+                                        <h4 class="phimbo-name-2">s</h4>
+                                        <span class="ribbon" style="top:-235px;">Tập 16/16</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- #END phim_de_cu.row -->
+                        <!-- END film_menu -->
+                    </ul>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+            <!-- Box: Top phim  -->
+            <div class="two">
+                <div class="right-box top-film-week">
+                    <h2 class="right-box-header star-icon"><span>Trailer Phim Mới</span></h2>
+                    <div class="right-box-content">
+                        <ul class="list-top-movie" id="list-top-film-week" style="overflow: hidden; width: auto; height: 477px;">
+
+                            <!-- BEGIN film_menu -->
+                            <!-- #BEGIN phim_sap_chieu_rap.row -->
+                            <li class="list-top-movie-item">
+                                <a class="list-top-movie-link" title="Thế giới khủng long" href="">
+                                    <img src="/Content/Images/Phim/Jurassic.jpg">
+                                    <div class="list-top-movie-item-thumb" title="Jurassic 3" alt="Thế giới khủng long"></div>
+                                    <div class="list-top-movie-item-info">
+                                        <span class="list-top-movie-item-vn" style="margin-top: 0px;">Thế giới khủng long 3: Lãnh địa</span>
+                                        <span class="list-top-movie-item-en">Jurassic 3: Dominion(2022)</span>
+                                        <span class="list-top-movie-item-view">Lượt xem: 1k</span>
+                                        <span class="rate-vote rate-vote-8"></span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-top-movie-item">
+                                <a class="list-top-movie-link" title="Aquaman 2" href="">
+                                    <img src="/Content/Images/Phim/Aquaman2.jpg">
+                                    <div class="list-top-movie-item-thumb" title="Aquaman 2" alt="{filmNAME}"></div>
+                                    <div class="list-top-movie-item-info">
+                                        <span class="list-top-movie-item-vn">Aquaman 2 và Vương Quốc Đã Mất</span>
+                                        <span class="list-top-movie-item-en">Aquaman2 and the Lost KingDom(2023)</span>
+                                        <span class="list-top-movie-item-view">Lượt xem: 30k</span>
+                                        <span class="rate-vote rate-vote-9"></span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <!-- #END phim_sap_chieu_rap.row -->
+                            <!-- END film_menu -->
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="three">
+            <!-- /Box: Top phim -->
+            <div class="rap-list-index">
+                <h2 class="header-list-index-2">
+                    <span class="title-list-index">Phim chiếu rạp</span>
+                    <a class="more-list-index" href="https://localhost:44386/Film/Phimchieurap" title="Phim chiếu rạp" rel="nofollow">Xem tất cả</a>
+                </h2>
+            </div>
+            <div class="phimbo-movie-list block-wrapper">
+                <div class="phimbo_list_carousel">
+                    <ul id="phimbo-carousel-top">
+                        <!-- BEGIN film_menu -->
+                        <!-- #BEGIN phim_de_cu.row -->
+                        <li>
+                            <a href="" title="">
+                                <div class="phimbo-carousel-top-item">
+                                    <img src="/Content/Images/Phim/Jurassic.jpg" alt="Jurassic 2" title="Jurassic 2:Dominion" width="225" height="299" />
+                                    <div class="phimbo-carousel-top-item-meta">
+                                        <h3 class="phimbo-name-1">Thế giới khủng long 3: Lãnh địa</h3>
+                                        <h4 class="phimbo-name-2">Jurassic 3:Dominion(2022)</h4>
+                                        <span class="ribbon" style="top:-235px;">Trailer HD Vietsub</span>
+                                        <p class="hidden">{film.INFO}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" title="">
+                                <div class="phimbo-carousel-top-item">
+                                    <img src="/Content/Images/Phim/Aquaman2.jpg" alt="Aquaman2" title="Aquaman 2 và Vương Quốc Đã Mất" width="225" height="299" />
+                                    <div class="phimbo-carousel-top-item-meta">
+                                        <h3 class="phimbo-name-1">Aquaman 2 và Vương Quốc Đã Mất</h3>
+                                        <h4 class="phimbo-name-2">Aquaman 2 and the Lost Kingdom(2023)</h4>
+                                        <span class="ribbon" style="top:-235px;">Trailer HD Vietsub</span>
+                                        <p class="hidden">{film.INFO}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- #END phim_de_cu.row -->
+                        <!-- END film_menu -->
+                        <li>
+                            <a href="" title="">
+                                <div class="phimbo-carousel-top-item">
+                                    <img src="~/Content/Images/Phim/DoctorStrange2.jpg" alt="Doctor Strange 2" title="Phù thủy tối thượng trong đa vũ trụ hỗn loạn" width="225" height="299" />
+                                    <div class="phimbo-carousel-top-item-meta">
+                                        <h3 class="phimbo-name-1">Phù thủy tối thượng Trong đa vũ trụ hỗn loạn</h3>
+                                        <h4 class="phimbo-name-2">Doctor Strange in the Mulltiverse of Madness(2022)</h4>
+                                        <span class="ribbon" style="top:-235px;">Cam Vietsub</span>
+                                        <p class="hidden">{film.INFO}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="five">
+            <!-- Box: Top phim  -->
+            <div class="right-box-1 top-film">
+                <h2 class="right-box-header star-icon"><span>Phim xem nhiều</span></h2>
+                <div class="right-box-content">
+                    <ul class="list-top-movie" id="list-top-film-week" style="overflow: hidden; width: auto; height: 477px;">
+
+                        <!-- BEGIN film_menu -->
+                        <!-- #BEGIN top_film.row -->
+                        <li class="list-top-movie-item">
+                            <a class="list-top-movie-link" title="Vua Hải Tặc" href="">
+                                <img src="/Content/Images/Phim/onepiece.jpeg">
+                                <div class="list-top-movie-item-thumb" alt="{film.NAME}"></div>
+                                <div class="list-top-movie-item-info" style="margin-top: 0px;">
+                                    <span class="list-top-movie-item-vn">Vua Hải Tặc</span>
+                                    <span class="list-top-movie-item-en">One Piece</span>
+                                    <span class="list-top-movie-item-view">Lượt xem : 300k</span>
+                                    <span class="rate-vote rate-vote-10"></span>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- #END top_film.row -->
+                        <!-- END film_menu -->
+
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <!-- /Box: Top phim -->
+        </div>
+        <!-- Phim lẻ mới cập nhật -->
+        <div class="four">
+            <!-- /Box: Top phim -->
+            <div class="movie-list-index">
+                <h2 class="header-list-index-1">
+                    <span class="title-list-index">Phim lẻ mới cập nhật</span>
+                    <a class="more-list-index" href="https://localhost:44386/Film/Phimle" title="Phim lẻ" rel="nofollow">Xem tất cả</a>
+                </h2>
+            </div>
+            <div class="phimbo-movie-list block-wrapper">
+                <div class="phimbo_list_carousel">
+                    <ul id="phimbo-carousel-top">
+                        <!-- BEGIN film_menu -->
+                        <!-- #BEGIN phim_de_cu.row -->
+                        <li>
+                            <a href="" title="">
+                                <div class="phimbo-carousel-top-item">
+                                    <img src="/Content/Images/Phim/Conan24.jfif" alt="Conan - Movie 24" title="Conan - Viên đạn đỏ" width="225" height="299" />
+                                    <div class="phimbo-carousel-top-item-meta">
+                                        <h3 class="phimbo-name-1">Conan - Viên đạn đỏ</h3>
+                                        <h4 class="phimbo-name-2">Conan - Red Bullet(2021)</h4>
+                                        <span class="ribbon" style="top:-235px;">131 phút</span>
+                                        <p class="hidden">{film.INFO}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" title="">
+                                <div class="phimbo-carousel-top-item">
+                                    <img src="/Content/Images/Phim/Avengers-Infinity_War.jpg" alt="Avengets" title="Avengers: Infinity War" width="225" height="299" />
+                                    <div class="phimbo-carousel-top-item-meta">
+                                        <h3 class="phimbo-name-1">Avengers: Cuộc chiến vô cực</h3>
+                                        <h4 class="phimbo-name-2">Avengers: Infinity War(2018)</h4>
+                                        <span class="ribbon" style="top:-235px;">171 phút</span>
+                                        <p class="hidden">{film.INFO}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" title="">
+                                <div class="phimbo-carousel-top-item">
+                                    <img src="~/Content/Images/Phim/Mecung1.jpg" alt="Avengets" title="Avengers: Infinity War" width="225" height="299" />
+                                    <div class="phimbo-carousel-top-item-meta">
+                                        <h3 class="phimbo-name-1">Giải mã mê cung</h3>
+                                        <h4 class="phimbo-name-2">The</h4>
+                                        <span class="ribbon" style="top:-235px;">131 phút</span>
+                                        <p class="hidden">{film.INFO}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- #END phim_de_cu.row -->
+                        <!-- END film_menu -->
+                    </ul>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Phim lẻ mới cập nhật -->
+
+
+        <div class="six">
+            <!-- Footer -->
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 footer-logo-film">
+                            <a class="logo" href="" title="Xem phim mới chất lượng HD"><span></span></a>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="footer-link">
+                                <h3 class="footer-link-head">Phim Mới</h3>
+                                <a href="" title="Phim lẻ mới">Phim lẻ mới</a>
+                                <a href="" title="Phim bộ mới">Phim bộ mới</a>
+                                <a href="" title="Phim chiếu rạp 2013">Phim Mới</a>
+                                <a href="" title="Phim hành động hay">Phim Hành Động</a>
+                                <a href="" title="Phim Kinh Dị Hay">Phim Kinh Dị</a>
+                            </div>
+                            <div class="footer-link">
+                                <h3 class="footer-link-head">Phim Lẻ</h3>
+                                <a href="">Phim hành động</a>
+                                <a href="">Phim kiếm hiệp</a>
+                                <a href="">Phim kinh dị</a>
+                                <a href="">Phim viễn tưởng</a>
+                                <a href="">Phim hoạt hình</a>
+                            </div>
+                            <div class="footer-link">
+                                <h3 class="footer-link-head">Phim Quốc Gia</h3>
+                                <a href="" title="Phim bộ hàn quốc mới">Phim bộ Hàn Quốc</a>
+                                <a href="" title="Phim bộ Trung Quốc mới">Phim bộ Trung Quốc</a>
+                                <a href="" title="Phim bộ của Mỹ mới">Phim bộ Mỹ</a>
+                                <a href="" title="Phim bộ Việt Nam mới">Phim bộ Việt Nam</a>
+                                <a href="" title="Phim bộ Hồng Kông mới">Phim bộ Hồng Kông</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="footer-contact">
+                                <!-- <img src="styles/vtlai/movie/img/Uniad_Logo.png"> --><span>Liên hệ quảng cáo:</span>
+                                <p> Email: nhatcrys2000@gmail.com</br> Phone: 0912345678</p>
+                                <g:plusone size="medium" width="120" href="{web.LINK}"></g:plusone>
+                                <br />
+                                <a href="" alt="DMCA.com Protection Status"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Footer -->
+        </div>
+    </header>
+</body>
+</html>

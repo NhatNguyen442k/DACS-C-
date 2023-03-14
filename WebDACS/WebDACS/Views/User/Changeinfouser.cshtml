@@ -1,0 +1,170 @@
+﻿@model WebDACS.Models.Users
+
+@{
+    ViewBag.Title = "Changeinfouser";
+    Layout = "~/Views/Shared/Phu/_Homedangnhap-dangky.cshtml";
+}
+
+
+@{
+    DateTime date = DateTime.Now;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css/register")
+    @Scripts.Render("~/Content/js/register")
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="/js/login.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+</head>
+
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Iduser)
+
+            <div class="form-group">
+                <strong style="margin-left:100px;font-size:20px;color:white">
+                    EMAIL:
+                </strong>
+                <strong style="margin-left: 0px">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </strong>
+                <strong style="margin-left:100px;font-size:20px;color:white">
+                    BIỆT DANH:
+                </strong>
+                <strong style="margin-left: -20px">
+                    @Html.EditorFor(model => model.Displayname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Displayname, "", new { @class = "text-danger" })
+                </strong>
+            </div>
+
+            <div class="form-group">
+                <strong style="margin-left:100px;font-size:20px;color:white">
+                    TÊN ĐĂNG NHẬP:
+                </strong>
+                <strong style="margin-left: -100px">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </strong>
+                <strong style="margin-left:100px;font-size:20px;color:white">
+                    MẬT KHẨU TÀI KHOẢN:
+                </strong>
+                <strong style="margin-left: -140px">
+                    @Html.EditorFor(model => model.Userpassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Userpassword, "", new { @class = "text-danger" })
+                </strong>
+            </div>
+
+            <div class="form-group">
+                <strong style="margin-left:100px;font-size:20px;color:white">
+                    AVATAR TÀI KHOẢN:
+                </strong>
+                <strong style="margin-left: -133px">
+                    @Html.EditorFor(model => model.Avatar, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Avatar, "", new { @class = "text-danger" })
+                    <input type="file" name="fileUpload2" id="fileUpload2" accept="Images/*" style="display:none;" />
+                    <input type="button" id="btnUpload2" value="Browser" class="btn btn-success" />
+                </strong>
+                <strong style="margin-left:33px;font-size:20px;color:white">
+                    NGÀY TẠO:
+                </strong>
+                <strong style="margin-left: -13px">
+                    @Html.EditorFor(model => model.DateCreate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.DateCreate, "", new { @class = "text-danger" })
+                </strong>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("TRỞ VỀ", "ControlUser", null, new { @class = "back" })
+                    <input type="submit" value="Save" class="btn btn-default" style="margin-top:20px;font-size:30px;margin-left:500px;background-color:rebeccapurple" />
+                </div>
+            </div>
+        </div>
+    }
+</body>
+
+</html>
+<style>
+    body {
+        background: url(/Content/Images/Trangchu/backgroud.jpg);
+        background-size: cover;
+        background-position-y: -60px;
+        font-size: 16px;
+    }
+
+    .form-login {
+        max-width: 400px;
+        background: rgba(40, 100, 40, 0.5);
+        flex-grow: 1;
+        padding: 30px 30px 40px;
+        box-shadow: 0px 0px 17px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .form-group {
+        border-bottom: 1px solid #fff;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+
+        .form-group i {
+            color: #fff;
+            font-size: 14px;
+        }
+
+    .form-submit {
+        background: transparent;
+        border: 1px solid #f5f5f5;
+        background-color: yellow;
+        color: red;
+        width: 100%;
+        text-align: uppercase;
+        padding: 6px 10px;
+        transition: 0.25s ease-in-out;
+        margin-top: 10px;
+    }
+</style>
+@section changeinfo{
+    <script>
+        $(function () {
+            $('#btnUpload4').click(function () {
+                $('#fileUpload4').trigger('click');
+            });
+
+            $('#fileUpload4').change(function () {
+                if (window.FormData !== undefined) {
+                    var fileUpload = $('#fileUpload4').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file4', files[0]);
+                    $.ajax({
+                        type: 'POST',
+                        url: '/User/ProcessUpload4',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (urlImage) {
+                            $('#pictureUpload4').attr('src', urlImage);
+                            $('#Avatar').val(urlImage);
+                        },
+                        error: function (err) {
+                            alert(err.statusText);
+                        }
+                    });
+                }
+            })
+        });
+    </script>
+}

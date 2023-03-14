@@ -1,0 +1,616 @@
+﻿@model WebDACS.Models.Film
+@{
+    ViewBag.Title = "InfoPhim";
+    Layout = "~/Views/Shared/Phu/_InformationPhim.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div class="block-wrapper page-single" style="margin-top: 60px; height: 500px;">
+        <div class="movie-info">
+            <div class="block-movie-info movie-info-box">
+                <div class="row">
+                    <div class="col-6 movie-detail">
+                        <h1 class="movie-title">
+                            <span class="title-1">@Html.DisplayFor(model => model.NameVN)</span>
+                            <span class="title-2">@Html.DisplayFor(model => model.NameF) </span>
+                            <span class="title-year">(@Html.DisplayFor(model => model.Years))</span>
+                        </h1>
+
+                        <div class="movie-meta-info" style="overflow: hidden; width: auto; height: 280px;">
+                            <dl class="movie-dl">
+                                <dt class="movie-dt">Trạng thái:</dt>
+                                <dd class="movie-dd status">@Html.DisplayFor(model => model.Status)</dd>
+                                <br>
+                                <dt class="movie-dt">Đạo diễn:</dt>
+                                <dd class="movie-dd dd-director">@Html.DisplayFor(model => model.Director)</dd>
+                                <br>
+                                <dt class="movie-dt">Quốc gia:</dt>
+                                <dd class="movie-dd dd-country">@Html.DisplayFor(model => model.Nation)</dd>
+                                <br>
+                                <dt class="movie-dt">Năm:</dt>
+                                <dd class="movie-dd">@Html.DisplayFor(model => model.Years)</dd>
+                                <br>
+                                <dt class="movie-dt">Thời lượng:</dt>
+                                <dd class="movie-dd">@Html.DisplayFor(model => model.Times)phút/tập</dd>
+                                <br>
+                                <dt class="movie-dt">Loại phim:</dt>
+                                <dd class="movie-dd">@Html.DisplayFor(model => model.TypeFilm)</dd>
+                                <br>
+                                <dt class="movie-dt">Lượt xem:</dt>
+                                <dd class="movie-dd">@Html.DisplayFor(model => model.Rating)</dd>
+                                <br>
+                                <dt class="movie-dt">Tags:</dt>
+                                <dd class="movie-dd">
+                                    <a href="" class="">@Html.DisplayFor(model => model.NameVN)</a>,
+                                    <a href="" class="">@Html.DisplayFor(model => model.NameF)</a>
+                                </dd>
+                            </dl>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="box-rating">
+                            <p>
+                                Đánh giá Lượt Xem Phim
+                                <div class="rate_result">(@Html.DisplayFor(model => model.Rating))</div>
+                            </p><br></p>
+                            <div id="star" style="width: 200px;">
+                                <span class="rate-vote rate-vote-5"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 movie-image">
+                    <div class="movie-l-img">
+                        <img alt="@Html.DisplayFor(model => model.NameVN)" title="@Html.DisplayFor(model => model.NameVN)" src="@Html.DisplayFor(model => model.Images)">
+                        <ul class="btn-block">
+                            <li class="item"><a id="btn-film-trailer" class="btn btn-primary btn-film-trailer" title="Trailer" href="https://localhost:44307/Trailer/InfoTrailer/@Html.DisplayFor(n => n.IdFilm)">Trailer</a></li>
+                            <li class="item"><a id="btn-film-watch" class="btn btn-red btn-film-watch" title="Xem phim " href="https://localhost:44307/Trailer/InfoEpisode/@Html.DisplayFor(n => n.IdFilm)">Xem phim</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-wrapper page-single" style="margin-top: 5px; height:auto;">
+        <article class="block-wrapper-1  block-movie-content" id="trailer" style="margin-left:auto;">
+            <h2 class="movie-detail-h2">Trailer Phim</h2>
+        </article>
+
+        <article class="block-wrapper-1  block-movie-content" style="margin-left:0px;">
+            <h2 class="movie-detail-h2">Nội dung phim:</h2>
+            <h2>@Html.DisplayFor(model => model.Information)</h2>
+
+            <div class="content">
+                Bạn Đang Xem Phim: <a href="">@Html.DisplayFor(model => model.NameVN)</a>,
+                <a href="">@Html.DisplayFor(model => model.NameF)</a>
+            </div>
+        </article>
+        TAG:
+        <div class="spage-single block-tags1">
+            <a href="" title="Người nhện: Không còn nhà">@Html.DisplayFor(model => model.NameVN) v1vn</a> ,
+            <a href="" title="Người nhện: Không còn nhà">@Html.DisplayFor(model => model.NameF) vkool</a> ,
+            <a href="" title="Người nhện: Không còn nhà">@Html.DisplayFor(model => model.NameF) </a>
+        </div>
+    </div>
+    <div class="block-wrapper page-single block-comments" style="margin-top: 5px;height: auto;">
+        <h4>Bình luận về phim</h4>
+        <div class="fb-comments" data-href="" data-width="650" data-numposts="5" data-colorscheme="dark">Phim BT</div>
+    </div>
+    <div class="clear"></div>
+
+</body>
+</html>
+<style>
+    body {
+        color: #000;
+        font-size: 12px;
+        line-height: 1.5em;
+        background: url(/Content/Images/Trangchu/body_bg.gif) #6f6d72;
+    }
+
+
+    /* Logo */
+
+    .header {
+        background: #000 url(/Content/Images/Trangchu/header-bg.jpg) repeat-x;
+        height: 75px;
+        width: 96%;
+        padding: 0 25px;
+    }
+
+    .header-logo {
+        display: inline-block;
+        margin-top: 10px;
+        float: left;
+    }
+
+        .header-logo .logo {
+            background: red url(/Content/Images/Trangchu/logo-xpo-new.png) 0 0 no-repeat;
+            background-size: 260px 55px;
+            width: 260px;
+            height: 55px;
+            display: block;
+        }
+
+        .header-logo span {
+            display: none;
+        }
+
+
+    /* END Logo */
+
+
+    /* Tim kiem */
+
+    .header .search {
+        position: absolute;
+        top: 30px;
+        margin-left: 370px;
+    }
+
+        .header .search input[type="text"] {
+            vertical-align: middle;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 9px 12px 6px 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            width: 500px;
+            font-style: italic;
+            background: #303137;
+            border: none;
+            border-radius: 6px 6px 6px 6px;
+            color: #D3D3D3;
+        }
+
+        .header .search input[type="submit"] {
+            vertical-align: middle;
+            border: none;
+            background: none;
+            width: 95px;
+            height: 37px;
+            font-size: 0;
+            cursor: pointer;
+        }
+
+    .timnhanh {
+        vertical-align: middle;
+        display: inline-block;
+        cursor: pointer;
+        text-indent: 100px;
+        overflow: hidden;
+        width: 50px;
+        height: 33px;
+        border: none;
+        right: 0;
+        top: 13px;
+        border-radius: 6px;
+        background: #d9534f url('/Content/Images/Trangchu/sprites01.png') no-repeat scroll 18px 8px;
+        box-shadow: 0 0 3px #3C3C3C;
+    }
+
+
+    /* END Tim kiem */
+
+
+    /* Dangky - Dang nhap*/
+
+    .widget_user_header {
+        display: inline-block;
+        float: right;
+        margin-top: 20px;
+        color: #ddd;
+    }
+
+        .widget_user_header .button-gray {
+            color: rgba(255, 255, 255, 0.66);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), inset 1px 1px 0 rgba(255, 255, 255, 0.2);
+            -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), inset 1px 1px 0 rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), inset 1px 1px 0 rgba(255, 255, 255, 0.2);
+            background: #46474c;
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5b5d63), color-stop(100%, #46474c));
+            background-image: -webkit-linear-gradient(top, #5b5d63, #46474c);
+            background-image: -moz-linear-gradient(top, #5b5d63, #46474c);
+            background-image: -ms-linear-gradient(top, #5b5d63, #46474c);
+            background-image: -o-linear-gradient(top, #5b5d63, #46474c);
+            background-image: linear-gradient(top, #5b5d63, #46474c);
+            -pie-background: linear-gradient(#5b5d63, #46474c);
+            color: #ccc;
+            padding: 8px 15px;
+            border-radius: 3px;
+            float: left;
+            margin: 0 3px;
+        }
+
+        .widget_user_header .button-register {
+            background: transparent url(/Content/Images/Trangchu/image.png) no-repeat 0 0;
+            width: 79px;
+            height: 38px;
+            display: inline-block;
+            float: left;
+        }
+
+        .widget_user_header .button-login {
+            background: transparent url(/Content/Images/Trangchu/image.png) no-repeat -79px 0;
+            width: 98px;
+            height: 38px;
+            display: inline-block;
+            float: left;
+        }
+
+
+    /* END Dangky - Dang nhap*/
+    .block-wrapper {
+        position: relative;
+        background: #4F4E52 url('/Content/Images/Trangchu/item_bg.gif') repeat;
+        border-bottom: 1px solid #868489;
+        color: #ddd;
+        margin-left: 300px;
+        display: block;
+    }
+
+    .page-single {
+        padding: 10px;
+        width: 670px;
+    }
+
+    .movie-info .movie-l-img img {
+        width: 90%;
+        margin-top: 4px;
+    }
+
+    .movie-image .movie-l-img {
+        position: relative;
+        max-height: 500px;
+        float: left !important;
+        overflow: hidden;
+        width: 90%;
+        margin-top: -490px;
+    }
+
+    .movie-info .movie-l-img img {
+        width: 100%;
+        margin-top: 4px;
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    img {
+        border: 0;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    .movie-info .movie-sumary {
+        line-height: 193%;
+        font-size: 12px;
+        padding: 12px;
+        background: #333;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color: #b8b8b8;
+    }
+
+    .movie-detail {
+        float: right !important;
+    }
+
+    .movie-title {
+        margin-left: 50px;
+    }
+
+    .movie-info .movie-title {
+        margin: 0px 0px 10px 0px;
+        padding: 0px;
+        font-size: initial;
+    }
+
+        .movie-info .movie-title .title-1 {
+            text-transform: uppercase;
+            font: 20px 'UTMCafetaRegular';
+            color: #dacb46;
+            display: block;
+        }
+
+        .movie-info .movie-title .title-2 {
+            color: #999;
+            font-size: 12px;
+        }
+
+    .movie-title .title-year {
+        font-size: 12px;
+        color: #999;
+    }
+
+    .movie-info .movie-meta-info {
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        padding: 5px 8px;
+        line-height: 26px;
+        border: 1px solid #121212;
+        font-size: 12px;
+        color: #bbb;
+        background: #222;
+    }
+
+        .movie-info .movie-meta-info p {
+            margin: 0px !important;
+        }
+
+        .movie-info .movie-meta-info .col-left {
+            float: left;
+            width: 60%;
+        }
+
+        .movie-info .movie-meta-info .col-right {
+            float: left;
+            width: 40%;
+            padding-left: 5px;
+        }
+
+        .movie-info .movie-meta-info .status {
+            color: red;
+        }
+
+        .movie-info .movie-meta-info .imdb {
+            color: #000;
+            padding: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            background: #E3B71E;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+    .movie-info .movie-dl {
+        margin: 0px;
+        font-size: 14px;
+    }
+
+    .movie-info .movie-dt,
+    .movie-info .movie-dd {
+        display: inline;
+    }
+
+    .movie-info .movie-dd {
+        display: inline;
+        margin: 0px 10px -4px 5px;
+    }
+
+    .movie-info .block-movie-info .btn-block {
+        position: absolute;
+        bottom: 0px;
+        text-align: center;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 10px 22px;
+        margin: 0px;
+        list-style: none;
+    }
+
+        .movie-info .block-movie-info .btn-block .item {
+            display: inline-block;
+            padding: 4px;
+        }
+
+    .movie-info .label-cat {
+        font-size: 12px;
+    }
+    /* Block trailer + xem phim*/
+
+    .btn-block {
+        display: block;
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .movie-info .block-movie-info .btn-block {
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        width: 100%;
+        background: rgba(0, 0, 0, .8);
+        padding: 10px 0;
+        margin: 0;
+        list-style: none;
+    }
+
+        .movie-info .block-movie-info .btn-block .item {
+            display: inline-block;
+            padding: 4px;
+        }
+
+    .box-rating {
+        margin-top: 10px;
+        padding: 10px;
+        width: auto;
+        height: auto;
+        background: #222;
+        border: 1px solid #121212;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+    }
+
+        .box-rating #star {
+            display: inline-block;
+        }
+
+        .box-rating #hint {
+            color: #ddd;
+            text-transform: uppercase;
+        }
+
+    .block-movie-content h2 {
+        color: white;
+        font-weight: 700;
+        margin-top: 5px;
+    }
+
+    .box-rating p {
+        font-size: 14px;
+        color: #dacb46;
+    }
+
+    .box-rating .num-rating {
+        font-size: 12px;
+        color: #ddd;
+    }
+
+    .star_meaning,
+    .rate_result {
+        float: left;
+        margin-left: 4px;
+        line-height: 25px;
+        font-size: 14px;
+        color: #F00;
+    }
+
+    .rate-vote {
+        background: url(/Content/Images/Trangchu/image.png) no-repeat;
+        height: 20px;
+        width: 90px;
+        display: block;
+    }
+
+    .rate-vote-10 {
+        background-position: -4px -564px;
+    }
+
+    .rate-vote-9 {
+        background-position: -4px -584px;
+    }
+
+    .rate-vote-8 {
+        background-position: -4px -604px;
+    }
+
+    .rate-vote-7 {
+        background-position: -4px -624px;
+    }
+
+    .rate-vote-6 {
+        background-position: -4px -644px;
+    }
+
+    .rate-vote-5 {
+        background-position: -4px -664px;
+    }
+
+    .rate-vote-4 {
+        background-position: -4px -684px;
+    }
+
+    .rate-vote-3 {
+        background-position: -4px -704px;
+    }
+
+    .rate-vote-2 {
+        background-position: -4px -724px;
+    }
+
+    .rate-vote-1 {
+        background-position: -4px -744px;
+    }
+
+    .rate-vote-0 {
+        background-position: -4px -764px;
+    }
+
+    .btn-primary {
+        color: #ffffff;
+        background-color: #428bca;
+        border-color: #428bca;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 8px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.428571429;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .btn-red {
+        color: #ffffff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
+    }
+
+    .block-movie-content {
+        margin-top: 10px !important;
+        border: 1px solid #121212;
+        background: #222;
+        padding: 10px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        position: relative;
+    }
+
+    .col-6 {
+        float: left;
+        width: 50%;
+        position: relative;
+        min-height: 1px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .block-movie-content .content {
+        color: #bbb;
+        font-size: 13px;
+        font-family: arial;
+        line-height: 24px;
+    }
+
+        .block-movie-content .content p {
+            padding: 3px 0px;
+        }
+
+    .block-tags1 a {
+        color: #999;
+        font-size: 12px;
+    }
+
+    .block-comments h4 {
+        font-size: 20px;
+        color: #dacb46;
+    }
+
+    .fb-comments {
+        background: white;
+        color: black;
+    }
+
+    .block-wrapper-1 {
+        position: relative;
+        background: #4F4E52 url(/Content/Images/Trangchu/item_bg.gif) repeat;
+        border-bottom: 1px solid #868489;
+        color: #ddd;
+        display: block;
+    }
+</style>

@@ -1,0 +1,67 @@
+﻿@model WebDACS.Models.Film
+
+@{
+    ViewBag.Title = "DeleteFilm";
+    Layout = "~/Views/Shared/Phu/_AdminPage.cshtml";
+}
+
+
+<h3 style="font-size:25px;color:white">Bạn có chắc chắn muốn xóa dữ liệu này không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="text-align:center">
+            <p style="color:yellow;font-size:20px">
+                TÊN PHIM:
+                @Html.DisplayFor(model => model.NameVN)
+            </p>
+        </dt>
+
+        <dt>
+        <dt style="text-align:center">
+            <p style="color:yellow;font-size:20px">
+                TÊN ENGLISH:
+                @Html.DisplayFor(model => model.NameF)
+            </p>
+        </dt>
+        <dt style="text-align:center">
+            <p style="color:yellow;font-size:20px">
+                QUỐC GIA:
+                @Html.DisplayFor(model => model.Nation)
+            </p>
+        </dt>
+
+        <dt style="text-align:center">
+            <p style="color:yellow;font-size:20px">
+                NĂM SẢN XUẤT:
+                @Html.DisplayFor(model => model.Years)
+            </p>
+        </dt>
+
+        <dt style="">
+            <p style="color:yellow;font-size:20px">
+                NỘI DUNG:
+                @Html.DisplayFor(model => model.Information)
+            </p>
+        </dt>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" style="font-size: 20px; background-color: blue" /> |
+            @Html.ActionLink("TRỞ VỀ", "ControlPhim", null, new { @class = "back" })
+        </div>
+    }
+</div>
+<style>
+    .back {
+        font-size: 20px;
+        background-color: blue;
+        border: 2px solid black;
+    }
+</style>

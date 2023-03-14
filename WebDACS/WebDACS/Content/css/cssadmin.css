@@ -1,0 +1,158 @@
+body {
+    color: #000;
+    font-size: 12px;
+    line-height: 1.5em;
+    background: url(/Content/Images/Trangchu/body_bg.gif) #6f6d72;
+}
+
+
+/* Logo */
+
+.header {
+    background: #000 url(/Content/Images/Trangchu/header-bg.jpg) repeat-x;
+    height: 75px;
+    width: 96%;
+    padding: 0 25px;
+}
+
+.header-logo {
+    display: inline-block;
+    margin-top: 20px;
+    float: left;
+}
+
+.header-logo .logo {
+    background: red url(/Content/Images/Trangchu/logo-xpo-new.png) 0 0 no-repeat;
+    background-size: 150px 35px;
+    width: 150px;
+    height: 20px;
+    display: block;
+    padding: 8px 15px;
+}
+
+.header-logo span {
+    display: none;
+}
+
+
+/* END Logo */
+
+
+/* Quan ly user */
+
+.control-user {
+    display: inline-block;
+    float: left;
+    margin-top: 20px;
+    color: #ddd;
+}
+
+.control-user .button-control-user {
+    background: black url(/Content/Images/Trangchu/item_bg.gif) repeat-x;
+    font-size: 22px;
+    margin-left: 100px;
+    width: 180px;
+    height: 20px;
+    display: block;
+    text-align: center;
+    padding: 8px 15px;
+    position: relative;
+    text-decoration: none;
+}
+
+
+/* END Quan ly user */
+
+
+/* Quan ly phim */
+
+.control-phim {
+    display: inline-block;
+    float: left;
+    margin-top: 20px;
+    color: #ddd;
+}
+
+.control-phim .button-control-phim {
+    background: black url(/Content/Images/Trangchu/item_bg.gif) repeat-x;
+    font-size: 22px;
+    margin-left: 100px;
+    width: 125px;
+    height: 20px;
+    display: block;
+    text-align: center;
+    padding: 8px 15px;
+    position: relative;
+    text-decoration: none;
+}
+
+
+/* END Quan ly phim */
+
+
+/* Tao moi bo phim*/
+
+.create-film {
+    display: inline-block;
+    float: left;
+    margin-top: 20px;
+    color: #ddd;
+}
+
+.create-film .button-create-film {
+    background: black url(/Content/Images/Trangchu/item_bg.gif) repeat-x;
+    font-size: 22px;
+    margin-left: 100px;
+    width: 130px;
+    height: 20px;
+    display: block;
+    text-align: center;
+    padding: 8px 15px;
+    position: relative;
+    text-decoration: none;
+}
+
+
+/* END Tao moi bo phim*/
+
+
+/* Thoat tai khoan Admin */
+
+.logout-admin {
+    display: inline-block;
+    float: left;
+    margin-top: 20px;
+    color: #ddd;
+}
+
+.logout-admin .button-logout-admin {
+    background: black url(/Content/Images/Trangchu/item_bg.gif) repeat-x;
+    font-size: 22px;
+    margin-left: 100px;
+    width: 50px;
+    height: 20px;
+    display: block;
+    text-align: center;
+    padding: 8px 15px;
+    position: relative;
+    text-decoration: none;
+}
+
+
+/* END Thoat tai khoan Admin */
+
+body>.container>.banner-admin {
+    padding: 0;
+}
+
+
+/* Banner Admin */
+
+.banner-admin {
+    margin-top: 10px;
+    height: auto;
+    width: 96%;
+    padding: 0 25px;
+    margin-left: auto;
+    margin-right: auto;
+}

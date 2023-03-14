@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    @Styles.Render("~/Content/css/admin")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="container">
+                <!-- header logo -->
+                <div class="header-logo">
+                    <a class="logo" href="https://localhost:44307/Admin/AdminP" title="Về trang chủ"></a>
+                </div>
+
+                <div class="control-user">
+                    <a class="button-control-user" rel="nofollow" href="https://localhost:44307/Admin/ControlUser">Quản lý Tài khoản</a>
+                </div>
+                <div class="control-phim">
+                    <a class="button-control-phim" rel="nofollow" href="https://localhost:44307/Admin/ControlPhim">Quản lý Phim</a>
+                </div>
+                <div class="create-film">
+                    <a class="button-create-film" rel="nofollow" href="https://localhost:44307/Admin/CreateFilm">Tạo Phim mới</a>
+                </div>
+
+                <div class="logout-admin">
+                    <a class="button-logout-admin" rel="nofollow" href="https://localhost:44307/Film/Home">Thoát</a>
+                </div>
+            </div>
+        </div>
+        <div class="banner-admin">
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderBody()
+            @RenderSection("upload", required: false)
+            @RenderSection("uploadedit", required: false)
+            @RenderSection("uploadedituser", required: false)
+        </div>
+    </header>
+</body>

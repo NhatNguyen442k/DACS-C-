@@ -1,0 +1,203 @@
+﻿@model WebDACS.Models.Film
+
+@{
+    ViewBag.Title = "EditFilm";
+    Layout = "~/Views/Shared/Phu/_AdminPage.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdFilm)
+
+    <div class="form-group">
+        <strong style="margin-left:100px;font-size:20px;color:white">
+            TÊN PHIM:
+        </strong>
+        <strong style="margin-left: 0px">
+            @Html.EditorFor(model => model.NameVN, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NameVN, "", new { @class = "text-danger" })
+        </strong>
+        <strong style="margin-left:100px;font-size:20px;color:white">
+            ĐẠO DIỄN:
+        </strong>
+        <strong style="margin-left: -20px">
+            @Html.EditorFor(model => model.Director, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Director, "", new { @class = "text-danger" })
+        </strong>
+    </div>
+
+    <div class="form-group">
+        <strong style="margin-left:100px;font-size:20px;color:white">
+            TÊN ENGLISH:
+        </strong>
+        <strong style="margin-left: -37px">
+            @Html.EditorFor(model => model.NameF, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NameF, "", new { @class = "text-danger" })
+        </strong>
+        <strong style="margin-left:100px;font-size:20px;color:white">
+            QUỐC GIA:
+        </strong>
+        <strong style="margin-left: -22px">
+            @Html.EditorFor(model => model.Nation, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nation, "", new { @class = "text-danger" })
+        </strong>
+    </div>
+
+    <div class="form-group">
+        <strong style="margin-left:100px;font-size:20px;color:white">
+            TRẠNG THÁI:
+        </strong>
+        <strong style="margin-left: 122px">
+            @Html.DropDownList("Status", new List<SelectListItem> { new SelectListItem{Text = "HD-Vietsub",Value = "HD-Vietsub"},
+           new SelectListItem{Text = "HD-Thuyết minh", Value = "HD-Thuyết minh"},
+           new SelectListItem{Text = "Trailer-Vietsub", Value = "Trailer-Vietsub"},
+       }, new { style = "width:208px;margin-top:15px;text-align:center;font-size:15px", @class = "textbox", })
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+        </strong>
+        <strong style="margin-left:100px;font-size:20px;color:white">
+            NĂM:
+        </strong>
+        <strong style="margin-left: 33px">
+            @Html.EditorFor(model => model.Years, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Years, "", new { @class = "text-danger" })
+        </strong>
+    </div>
+
+    <div class="form-group">
+        <strong style="margin-left:100px;font-size:20px;color:white">
+            LOẠI PHIM:
+        </strong>
+        <strong style="margin-left: 140px">
+            @Html.DropDownList("TypeFilm", new List<SelectListItem> { new SelectListItem{Text = "Phim bộ",Value = "Phim bộ"},
+           new SelectListItem{Text = "Phim chiếu rạp", Value = "Phim chiếu rạp"},
+           new SelectListItem{Text = "Phim lẻ", Value = "Phim lẻ"},
+       }, new { style = "width:208px;margin-top:15px;text-align:center;font-size:15px", @class = "textbox", })
+            @Html.ValidationMessageFor(model => model.TypeFilm, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.TypeFilm, "", new { @class = "text-danger" })
+        </strong>
+        <strong style="margin-left:100px;font-size:20px;color:white">
+            THỜI LƯỢNG:
+        </strong>
+        <strong style="margin-left: -53px">
+            @Html.EditorFor(model => model.Times, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Times, "", new { @class = "text-danger" })
+        </strong>
+    </div>
+
+    <div class="form-group">
+        <strong style="margin-left:100px;font-size:20px;color:white">
+            HÌNH MINH HỌA:
+        </strong>
+        <strong style="margin-left: -66px">
+            @Html.EditorFor(model => model.Images, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
+            <input type="file" name="fileUpload1" id="fileUpload1" accept="Image/*" style="display:none;" />
+            <input type="button" id="btnUpload1" value="Browser" class="btn btn-success" />
+        </strong>
+        <strong style="margin-left:33px;font-size:20px;color:white">
+            LƯỢT XEM:
+        </strong>
+        <strong style="margin-left: -30px">
+            @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+        </strong>
+    </div>
+
+    <div class="form-group">
+        <strong style="margin-left:100px;font-size:20px;color:white">
+            NGÀY ĐĂNG:
+        </strong>
+        <strong style="margin-left: -23px">
+            @Html.EditorFor(model => model.DateCreate, new { htmlAttributes = new { @class = "form-control",@readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.DateCreate, "", new { @class = "text-danger" })
+        </strong>
+
+        <strong style="margin-left: -83px">
+            @Html.HiddenFor(model => model.DateUpdate,Model.DateUpdate = DateTime.Now)
+            @Html.ValidationMessageFor(model => model.DateUpdate, "", new { @class = "text-danger" })
+        </strong>
+    </div>
+
+    <div class="form-group">
+        <strong style="margin-left:100px;font-size:20px;color:white">
+            NỘI DUNG PHIM:
+        </strong>
+        <strong style="margin-left: 0px">
+            @Html.EditorFor(model => model.Information, new { htmlAttributes = new { @class = "form-control1" } })
+            @Html.ValidationMessageFor(model => model.Information, "", new { @class = "text-danger" })
+        </strong>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("TRỞ VỀ", "ControlPhim", null, new { @class = "back" })
+            <input type="submit" value="Save" class="btn btn-default" style="font-size:20px;margin-left:1000px;background-color:green" />
+        </div>
+    </div>
+</div>
+}
+
+<style>
+    .form-control {
+        width: 200px;
+        height: 20px;
+        margin-top: 12px;
+        margin-left: 150px;
+    }
+
+    .back {
+        font-size: 20px;
+        margin-left: 40px;
+        background-color: green;
+        border: 2px solid black;
+    }
+
+    .form-control1 {
+        width: 600px;
+        height: 80px;
+        margin-top: 12px;
+        margin-left: 88px;
+    }
+</style>
+@section uploadedit{
+    <script>
+        $(function () {
+            $('#btnUpload1').click(function () {
+                $('#fileUpload1').trigger('click');
+            });
+
+            $('#fileUpload1').change(function () {
+                if (window.FormData !== undefined)
+                {
+                    var fileUpload = $('#fileUpload1').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file1', files[0]);
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Admin/ProcessUpload1',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (urlImage)
+                        {
+                            $('#pictureUpload1').attr('src', urlImage);
+                            $('#Images').val(urlImage);
+                        },
+                        error: function (err)
+                        {
+                            alert(err.statusText);
+                        }
+                    });
+                }
+            })
+        });
+    </script>
+}

@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css/index")
+</head>
+@{
+    var ses = Session["Taikhoan"] as WebDACS.Models.Users;
+    var ses2 = Session["TaikhoanAdmin"] as WebDACS.Models.Users;
+}
+<body>
+    <header>
+        <div class="header">
+            <div class="container">
+                <!-- header logo -->
+                <div class="header-logo">
+                    <a class="logo" href="https://localhost:44307/Film/Home" title="Xem phim mới chất lượng HD"><span><h1>PHIM6V.COM</h1></span></a>
+                </div>
+
+                <!-- MAIN search() -->
+                <div class="search">
+                    <input type="text" placeholder="Tìm: tên phim, đạo diễn, diễn viên" id="searchInput" name="q" onkeydown="EnterKey(event);" />
+                    <a class="submit" id="bounceEaseOut" onclick="return do_search(1);"></a>
+                    <a href="#" onclick="return timnhanh();" class="timnhanh"></a>
+                </div>
+                <!-- MAIN user_login() -->
+                @if (ses != null)
+                {
+                    <div class="widget_user_header">
+                        <div class="btn-group">
+                            <button type="button" class="btn-bdown username btn-small">Xin chào: @Session["Bietdanh"]</button>
+                            <div class="dropdown">
+                                <button class="btn-bdown dropdown-toggle btn-small" onclick="myclick()">
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu" id="dropinfouser">
+                                    <a href="@Url.Action("AdminP", "Admin")">Trang chủ Admin</a>
+                                    <a href="@Url.Action("Dangxuat","User")">Thoát</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    if (ses2 != null)
+                    {
+                        <div class="widget_user_header">
+                            <div class="btn-group">
+                                <button type="button" class="btn-bdown username btn-small">Xin chào: @Session["Bietdanh"]</button>
+                                <div class="dropdown">
+                                    <button class="btn-bdown dropdown-toggle btn-small" onclick="myclick()">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div class="dropdown-menu" id="dropinfouser">
+                                        <a href="@Url.Action("Changeinfouser","User")">Thay đổi thông tin</a>
+                                        <a href="@Url.Action("Dangxuat","User")">Thoát</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="widget_user_header">
+                            <a class="button-register" rel="nofollow" href="https://localhost:44307/User/Dangky"></a>
+                            <a class="button-login" rel="nofollow" href="https://localhost:44307/User/Dangnhap"></a>
+                        </div>
+                    }
+                }
+            </div>
+            <nav>
+                <div class="container">
+                    <ul id="mega-menu-1">
+                        <li><a href="https://localhost:44386/Film/Home">Home</a></li>
+                        <li>
+                            <a class="dc-mega">Thể loại<span class="dc-mega-icon"></span></a>
+                            <div class="sub-container" style="top: 45px; z-index: 1000;">
+                                <ul class="sub">
+                                    <li><a href="">Phim hành động</a></li>
+                                    <li><a href="">Phim kinh dị - ma</a></li>
+                                    <li><a href="">Phim hài hước</a></li>
+                                    <li><a href="">Phim hoạt hình</a></li>
+                                    <li><a href="">Phim tình cảm</a></li>
+                                    <li><a href="">Phim tâm lý</a></li>
+                                    <li><a href="">Phim võ thuật</a></li>
+                                    <li><a href="">Phim viễn tưởng</a></li>
+                                    <li><a href="">Phim thần thoại</a></li>
+                                    <li><a href="">Phim Dã Sử</a></li>
+                                    <li><a href="">Phim Tội Phạm</a></li>
+                                    <li><a href="">Phim Cổ Trang</a></li>
+                                    <li><a href="">Phim chiến tranh</a></li>
+                                    <li><a href="">Phim phiêu lưu</a></li>
+                                    <li><a href="">Phim Kiếm Hiệp</a></li>
+                                    <li><a href="">Phim Âm nhạc</a></li>
+                                    <li><a href="">Phim Thể Thao</a></li>
+                                    <li><a href="">Phim hình sự</a></li>
+                                    <li><a href="">Phim Tổng Hợp</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="dc-mega">Quốc gia<span class="dc-mega-icon"></span></a>
+                            <div class="sub-container" style="top: 45px; z-index: 1000;">
+                                <ul class="sub">
+                                    <li><a href="">Phim Mỹ</a></li>
+                                    <li><a href="">Phim Trung Quốc</a></li>
+                                    <li><a href="">Phim Hàn Quốc</a></li>
+                                    <li><a href="">Phim Việt Nam</a></li>
+                                    <li><a href="">Phim Nhật Bản</a></li>
+                                    <li><a href="">Phim Thái Lan</a></li>
+                                    <li><a href="">Phim Pháp</a></li>
+                                    <li><a href="">Phim Ấn Độ</a></li>
+                                    <li><a href="">Phim Nga</a></li>
+                                    <li><a href="">Phim Châu Á</a></li>
+                                    <li><a href="">Phim Châu Âu</a></li>
+                                    <li><a href="">Phim Hồng Kông</a></li>
+                                    <li><a href="">Phim Đài Loan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="dc-mega" href="">Xem phim mới<span class="dc-mega-icon"></span></a>
+                            <div class="sub-container" style="top: 45px; z-index: 1000;">
+                                <ul class="sub">
+                                    <li><a href="">Phim 2015</a></li>
+                                    <li><a href="">Phim 2014</a></li>
+                                    <li><a href="">Phim 2013</a></li>
+                                    <li><a href="">Phim 2012</a></li>
+                                    <li><a href="">Phim 2011</a></li>
+                                    <li><a href="">Phim 2010</a></li>
+                                    <li><a href="">Phim 2009</a></li>
+                                    <li><a href="">Phim 2008</a></li>
+                                    <li><a href="">Phim 2007</a></li>
+                                    <li><a href="">Phim 2006</a></li>
+                                    <li><a href="">Phim 2005</a></li>
+                                    <li><a href="/">Phim 2004</a></li>
+                                    <li><a href="">Phim 2003</a></li>
+                                    <li><a href="">Phim 2002</a></li>
+                                    <li><a href="">Phim 2001</a></li>
+                                    <li><a href="">Phim 2000</a></li>
+                                    <li><a href="">Phim 1999</a></li>
+                                    <li><a href="">Phim 1998</a></li>
+                                    <li><a href="">Phim 1997</a></li>
+                                    <li><a href="">Phim 1996</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="https://localhost:44386/Film/Phimle" class="dc-mega">Phim lẻ<span class="dc-mega-icon"></span></a></li>
+                        <li><a href="https://localhost:44386/Film/Phimbo" class="dc-mega">Phim bộ<span class="dc-mega-icon"></span></a></li>
+                        <li><a href="https://localhost:44386/Film/Phimchieurap">Phim Chiếu Rạp</a></li>
+                        <li><a href="">Diễn viên</a></li>
+                        <li><a href="">Yêu cầu</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="movie-list-index">
+            <h2 class="header-list-index-1">
+                <span class="title-list-index">Phim bộ mới cập nhật</span>
+                <a class="more-list-index" href="" title="phim bộ" rel="nofollow"></a>
+            </h2>
+        </div>
+        <div class="phimbo-movie-list block-wrapper">
+            <div class="phimbo_list_carousel">
+                <ul id="phimbo-carousel-top">
+                    <!-- BEGIN film_menu -->
+                    <!-- #BEGIN phim_de_cu.row -->
+                    @RenderBody()
+                    <!-- #END phim_de_cu.row -->
+                    <!-- END film_menu -->
+                </ul>
+                <div class="clear">
+                </div>
+            </div>
+            <!-- Footer -->
+            <footer>
+                <div class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 footer-logo-film">
+                                <a class="logo" href="" title="Xem phim mới chất lượng HD"><span><h1></h1></span></a>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="footer-link">
+                                    <h3 class="footer-link-head">Phim Mới</h3>
+                                    <a href="" title="Phim lẻ mới">Phim lẻ mới</a>
+                                    <a href="" title="Phim bộ mới">Phim bộ mới</a>
+                                    <a href="" title="Phim chiếu rạp 2013">Phim Mới</a>
+                                    <a href="" title="Phim hành động hay">Phim Hành Động</a>
+                                    <a href="" title="Phim Kinh Dị Hay">Phim Kinh Dị</a>
+                                </div>
+                                <div class="footer-link">
+                                    <h3 class="footer-link-head">Phim Lẻ</h3>
+                                    <a href="">Phim hành động</a>
+                                    <a href="">Phim kiếm hiệp</a>
+                                    <a href="">Phim kinh dị</a>
+                                    <a href="">Phim viễn tưởng</a>
+                                    <a href="">Phim hoạt hình</a>
+                                </div>
+                                <div class="footer-link">
+                                    <h3 class="footer-link-head">Phim Quốc Gia</h3>
+                                    <a href="" title="Phim bộ hàn quốc mới">Phim bộ Hàn Quốc</a>
+                                    <a href="" title="Phim bộ Trung Quốc mới">Phim bộ Trung Quốc</a>
+                                    <a href="" title="Phim bộ của Mỹ mới">Phim bộ Mỹ</a>
+                                    <a href="" title="Phim bộ Việt Nam mới">Phim bộ Việt Nam</a>
+                                    <a href="" title="Phim bộ Hồng Kông mới">Phim bộ Hồng Kông</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="footer-contact">
+                                    <!-- <img src="styles/vtlai/movie/img/Uniad_Logo.png"> --><span>Liên hệ quảng cáo:</span>
+                                    <p> Email: nhatcrys2000@gmail.com</br> Phone: 0912345678</p>
+                                    <g:plusone size="medium" width="120" href="{web.LINK}"></g:plusone>
+                                    <br />
+                                    <a href="" alt="DMCA.com Protection Status"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- /Footer -->
+    </header>
+</body>
+</html>
+<script>
+    function myclick() {
+        document.getElementById("dropinfouser").classList.toggle("show");
+    }
+
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropdown-toggle')) {
+            var dropdowns = document.getElementsByClassName("dropdown-menu");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+<style>
+    .btn-bdown {
+        color: #ffffff;
+        background-color: #333;
+    }
+
+        .btn-bdown.username {
+            cursor: default;
+        }
+
+    .btn-small {
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+    }
+
+    .caret {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 2px;
+        vertical-align: middle;
+        border-top: 4px solid #000000;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+    }
+
+
+    /* */
+
+
+    /* Dùng trong <div> để định vị nội dung thả xuống */
+
+
+    /* Dùng trong <div> để định vị nội dung thả xuống */
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #e9d8f4;
+        min-width: 122px;
+        z-index: 1;
+        padding: 5px 0;
+        margin: 2px 0 0;
+        list-style: none;
+        background-color: black;
+        border: 1px solid #cccccc;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        background-clip: padding-box;
+    }
+
+        .dropdown-menu a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            clear: both;
+            font-weight: normal;
+            line-height: 1.428571429;
+            color: whitesmoke;
+            white-space: nowrap;
+        }
+
+            .dropdown-menu a:hover {
+                color: #ffffff;
+                text-decoration: none;
+                background-color: #357ebd;
+                background-repeat: repeat-x;
+            }
+
+    .dropdown:focus .dropdown-menu {
+        display: block;
+    }
+
+    .show {
+        display: block;
+    }
+</style>

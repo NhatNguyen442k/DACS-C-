@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebDACS.Models.Users>
+@{
+    ViewBag.Title = "ControlUser";
+    Layout = "~/Views/Shared/Phu/_AdminPage.cshtml";
+}
+
+<table class="table" style="width:96%">
+    <tr>
+        <th style="width:200px">
+            <p style="color:yellowgreen;font-size:15px">AVATAR</p>
+        </th>
+        <th style="width:200px">
+            <p style="color:yellowgreen;font-size:15px">TÊN NGƯỜI DÙNG</p>
+        </th>
+        <th>
+            <p style="color:yellowgreen;font-size:15px">BIỆT DANH</p>
+        </th>
+        <th style="width:50px">
+            <p style="color:yellowgreen;font-size:15px">EMAIL</p>
+        </th>
+        <th>
+            <p style="color:yellowgreen;font-size:15px">NGÀY TẠO</p>
+        </th>
+        <th>
+            <p style="color:yellowgreen;font-size:15px">CHỨC NĂNG</p>
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td style="text-align:center">
+        <img src="@item.Avatar" style="width:200px;height:150px;margin-top:20px" />
+    </td>
+    <td style="text-align:center;color:violet;font-size:20px">
+        <p>@Html.DisplayFor(modelItem => item.Username)</p>
+    </td>
+    <td style="text-align: center; color:hotpink; font-size: 18px">
+        @Html.DisplayFor(modelItem => item.Displayname)
+    </td>
+
+    <td style="text-align: center; color:yellow; font-size: 18px">
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td style="text-align: center; color:aqua; font-size: 18px">
+        @Html.DisplayFor(modelItem => item.DateCreate)
+    </td>
+    <td style="text-align: center; font-size: 16px">
+        @Html.ActionLink("Sửa", "EditUser", new { id = item.Iduser }) |
+        @Html.ActionLink("Xóa", "DeleteUser", new { id = item.Iduser })
+    </td>
+</tr>
+    }
+</table>

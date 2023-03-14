@@ -1,0 +1,617 @@
+﻿@model IEnumerable<WebDACS.Models.Film>
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Trangchu.cshtml";
+}
+
+@section PhimChuy{
+    <div class="row top-movie">
+        <div class="col-lg-12">
+            <h2 class="header-list-index" style="margin-top: 0px;">
+                <span class="title-list-index">PHIM ĐÁNG CHÚ Ý</span>
+            </h2>
+            <div class="top-movie-list block-wrapper">
+                <div class="list_carousel">
+                    <ul id="movie-carousel-top">
+                        <!-- BEGIN film_menu -->
+                        <!-- #BEGIN phim_de_cu.row -->
+
+                        @foreach (var item in Model)
+                        {
+                            if (item.IdFilm <= 4)
+                            {
+                                <li>
+                                    <div class="movie-carousel-top-item">
+                                        <a href="InfoPhim/@item.IdFilm" title="@item.NameVN">
+                                            <img src="@item.Images" alt="" width="225" height="299" />
+                                            <div class="movie-carousel-top-item-meta">
+                                                <h3 class="movie-name-1">@item.NameVN</h3>
+                                                <h4 class="movie-name-2">@item.NameF-@item.Years</h4>
+                                                <span class="ribbon" style="top:-235px;">@item.Status-@item.Times</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+                        }
+                        <!-- #END phim_de_cu.row -->
+                        <!-- END film_menu -->
+                    </ul>
+                    <div class="clear">
+                    </div>
+                    <a id="prevTop" class="prev" rel="nofollow"><span class="arrow-icon left"></span></a>
+                    <a id="nextTop" class="next" rel="nofollow"><span class="arrow-icon right"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Phimbo{
+    <div class="movie-list-index">
+        <h2 class="header-list-index-1">
+            <span class="title-list-index">Phim bộ mới cập nhật</span>
+            <a class="more-list-index" href="https://localhost:44307/Film/Phimbo" title="phim bộ" rel="nofollow">Xem tất cả</a>
+        </h2>
+    </div>
+    <div class="phimbo-movie-list block-wrapper">
+        <div class="phimbo_list_carousel">
+            <ul id="phimbo-carousel-top">
+                <!-- BEGIN film_menu -->
+                <!-- #BEGIN phim_de_cu.row -->
+                @foreach (var item in Model)
+                {
+                    if (item.TypeFilm == "Phim bộ" && item.IdFilm < 14)
+                    {
+                        <li>
+                            <div class="movie-carousel-top-item">
+                                <a href="InfoPhim/@item.IdFilm" title="@item.NameVN">
+                                    <img src="@item.Images" alt="@item.NameVN" width="225" height="299" />
+                                    <div class="movie-carousel-top-item-meta">
+                                        <h3 class="movie-name-1">@item.NameVN</h3>
+                                        <h4 class="movie-name-2">@item.NameF-@item.Years</h4>
+                                        <span class="ribbon" style="top:-235px;">@item.Status-(@item.Times)phút/tập</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    }
+                }
+                <!-- #END phim_de_cu.row -->
+                <!-- END film_menu -->
+            </ul>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+}
+
+@section Phimchieurap{
+    <!-- /Box: Top phim -->
+    <div class="rap-list-index">
+        <h2 class="header-list-index-2">
+            <span class="title-list-index">Phim chiếu rạp</span>
+            <a class="more-list-index" href="https://localhost:44307/Film/Phimchieurap" title="Phim chiếu rạp" rel="nofollow">Xem tất cả</a>
+        </h2>
+    </div>
+    <div class="phimbo-movie-list block-wrapper">
+        <div class="phimbo_list_carousel">
+            <ul id="phimbo-carousel-top">
+                <!-- BEGIN film_menu -->
+                <!-- #BEGIN phim_de_cu.row -->
+                @foreach (var item in Model)
+                {
+                    if (item.TypeFilm == "Phim chiếu rạp" && item.IdFilm < 5)
+                    {
+                        <li>
+                            <div class="movie-carousel-top-item">
+                                <a href="InfoPhim/@item.IdFilm" title="@item.NameVN">
+                                    <img src="@item.Images" alt="@item.NameVN" width="225" height="299" />
+                                    <div class="movie-carousel-top-item-meta">
+                                        <h3 class="movie-name-1">@item.NameVN</h3>
+                                        <h4 class="movie-name-2">@item.NameF-@item.Years</h4>
+                                        <span class="ribbon" style="top:-235px;">@item.Status-@item.Times</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+}
+@section Phimle{
+    <!-- /Box: Top phim -->
+    <div class="movie-list-index">
+        <h2 class="header-list-index-1">
+            <span class="title-list-index">Phim lẻ mới cập nhật</span>
+            <a class="more-list-index" href="https://localhost:44307/Film/Phimle" title="Phim lẻ" rel="nofollow">Xem tất cả</a>
+        </h2>
+    </div>
+    <div class="phimbo-movie-list block-wrapper">
+        <div class="phimbo_list_carousel">
+            <ul id="phimbo-carousel-top">
+                <!-- BEGIN film_menu -->
+                <!-- #BEGIN phim_de_cu.row -->
+                @foreach (var item in Model)
+                {
+                    if (item.TypeFilm == "Phim lẻ" && item.IdFilm < 12)
+                    {
+                        <li>
+                            <div class="movie-carousel-top-item">
+                                <a href="InfoPhim/@item.IdFilm" title="@item.NameVN">
+                                    <img src="@item.Images" alt="@item.NameVN" width="225" height="299" />
+                                    <div class="movie-carousel-top-item-meta">
+                                        <h3 class="movie-name-1">@item.NameVN</h3>
+                                        <h4 class="movie-name-2">@item.NameF-@item.Years</h4>
+                                        <span class="ribbon" style="top:-235px;">@item.Status-@item.Times</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    }
+                }
+                <!-- #END phim_de_cu.row -->
+                <!-- END film_menu -->
+            </ul>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <!-- /Phim lẻ mới cập nhật -->
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+</body>
+</html>
+
+<style>
+
+    body {
+        color: #000;
+        font-size: 12px;
+        line-height: 1.5em;
+        background: url('/Content/Images/Trangchu/body_bg.gif') #6f6d72;
+    }
+
+        body > .container > .row > .col-lg-12 {
+            padding: 0;
+        }
+
+    .header-list-index {
+        background: url('/Content/Images/Trangchu/divider_line.gif') bottom repeat-x;
+        margin-bottom: 5px;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+        .header-list-index .title-list-index {
+            color: #dacb46;
+            text-shadow: 1px 1px 1px #1a1a1a;
+            display: inline-block;
+            font: 30px/40px 'UTMCafetaRegular';
+            text-transform: uppercase;
+        }
+
+        .header-list-index .more-list-index {
+            float: right;
+            display: inline-block;
+            padding: 15px 12px 0px 0px;
+            color: #ddd;
+            font-size: 16px;
+            text-decoration: none;
+            background: url('/Content/Images/Trangchu/viewmore.png') no-repeat right 21px;
+        }
+
+            .header-list-index .more-list-index:hover {
+                color: #dacb46;
+            }
+
+    .header-list-index-1 {
+        background: url('/Content/Images/Trangchu/divider_line.gif') bottom repeat-x;
+        margin-bottom: 5px;
+        margin-top: 10px;
+        width: 71%;
+    }
+
+    .header-list-index-2 {
+        background: url('/Content/Images/Trangchu/divider_line.gif') bottom repeat-x;
+        margin-bottom: 5px;
+        margin-top: 10px;
+        width: 71%;
+    }
+
+        .header-list-index-2 .title-list-index {
+            color: #dacb46;
+            text-shadow: 1px 1px 1px #1a1a1a;
+            display: inline-block;
+            font: 30px/40px 'UTMCafetaRegular';
+            text-transform: uppercase;
+        }
+
+        .header-list-index-2 .more-list-index {
+            float: right;
+            display: inline-block;
+            padding: 15px 12px 0px 0px;
+            color: #ddd;
+            font-size: 16px;
+            text-decoration: none;
+            background: url('/Content/Images/Trangchu/viewmore.png') no-repeat right 21px;
+        }
+
+            .header-list-index-2 .more-list-index:hover {
+                color: #dacb46;
+            }
+
+    .header-list-index-1 .title-list-index {
+        color: #dacb46;
+        text-shadow: 1px 1px 1px #1a1a1a;
+        display: inline-block;
+        font: 30px/40px 'UTMCafetaRegular';
+        text-transform: uppercase;
+    }
+
+    .header-list-index-1 .more-list-index {
+        float: right;
+        display: inline-block;
+        padding: 15px 12px 0px 0px;
+        color: #ddd;
+        font-size: 16px;
+        text-decoration: none;
+        background: url('/Content/Images/Trangchu/viewmore.png') no-repeat right 21px;
+    }
+
+        .header-list-index-1 .more-list-index:hover {
+            color: #dacb46;
+        }
+
+    .top-movie-list {
+        padding: 15px;
+        width: 70%;
+        margin: auto;
+        padding: 10px;
+    }
+
+    .top-movie {
+        margin: -30px 0px 15px 0px;
+    }
+    /* .movie-carousel */
+
+    .movie-carousel-top-item {
+        width: 225px;
+        height: 300px;
+        position: relative;
+        margin-left: 50px;
+    }
+
+        .movie-carousel-top-item img {
+            width: 100%;
+            border: 2px solid #000;
+        }
+
+    .movie-carousel-top-item-meta {
+        position: absolute;
+        bottom: 2px;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 5px;
+        width: 97%;
+    }
+
+    .movie-name-1 {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        color: #FF8040;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        margin: 5px 0px;
+    }
+
+    .movie-name-2 {
+        color: #fff;
+        font-size: 12px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        text-decoration: none;
+        margin: 5px 0px;
+    }
+
+    .movie-carousel-top-item img:hover {
+        opacity: 0.7;
+        width: 100%;
+    }
+
+    .movie-carousel-top-item:hover .movie-name-1 {
+        color: #dacb46;
+    }
+
+    #movie-carousel-top li {
+        margin-right: 17px;
+    }
+
+    .block-wrapper {
+        position: relative;
+        padding: 2px;
+        background: #4F4E52 url('/Content/Images/Trangchu/item_bg.gif') repeat;
+        border-bottom: 1px solid #868489;
+        color: #ddd;
+        height: auto;
+        display: block;
+    }
+
+    .list_carousel {
+        width: 100%;
+        position: relative;
+    }
+
+        .list_carousel ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: block;
+        }
+
+        .list_carousel li {
+            color: #999;
+            display: block;
+            float: left;
+            margin-right: 22px;
+        }
+
+        .list_carousel .prev {
+            top: 100px;
+            position: absolute;
+            padding: 30px 10px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+            .list_carousel .prev:hover {
+                background: rgba(0, 0, 0, 0.9);
+                outline: none;
+                cursor: pointer;
+            }
+
+            .list_carousel .prev .arrow-icon.left {
+                background: url('/Content/Images/Trangchu/image.png') no-repeat -2px -535px;
+                height: 24px;
+                width: 16px;
+                display: block;
+            }
+
+        .list_carousel .next {
+            right: 0px;
+        }
+
+        .list_carousel .next {
+            top: 100px;
+            position: absolute;
+            padding: 30px 10px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+            .list_carousel .next:hover {
+                background: rgba(0, 0, 0, 0.9);
+                outline: none;
+                cursor: pointer;
+            }
+
+            .list_carousel .next .arrow-icon.right {
+                background: url('/Content/Images/Trangchu/image.png') no-repeat -23px -535px;
+                height: 24px;
+                width: 16px;
+                display: block;
+            }
+
+    .ribbon {
+        position: absolute;
+        color: #fff;
+        background: #D9534F;
+        font-size: 11px;
+        font-weight: bold;
+        float: left;
+        clear: both;
+        padding: 4px;
+        text-shadow: 0 -1px #d0284b, 0 1px #f96080;
+        left: 2px;
+        top: 5px;
+    }
+
+        .ribbon:after {
+            content: "";
+            float: right;
+            position: absolute;
+            top: 0;
+            right: -12px;
+            width: 0;
+            height: 0;
+            border-color: transparent transparent transparent #D9534F;
+            border-style: solid;
+            border-width: 11px 0 12px 12px;
+        }
+
+    .hidden {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .phimbo-movie-list {
+        padding: 15px;
+        width: 925px;
+        margin: auto;
+        padding: 10px;
+        float: left;
+    }
+
+    .phimbo-movie {
+        margin: -30px 0px 15px 0px;
+    }
+
+    .phimbo-carousel-top-item {
+        margin-left: 45px;
+        width: 225px;
+        height: 300px;
+        position: relative;
+    }
+
+        .phimbo-carousel-top-item img {
+            width: 100%;
+            border: 2px solid #000;
+        }
+
+    .phimbo-carousel-top-item-meta {
+        position: absolute;
+        bottom: 2px;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 5px;
+        width: 97%;
+    }
+
+    .phimbo-name-1 {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        color: blue;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        margin: 5px 0px;
+    }
+
+    .phimbo-name-2 {
+        color: #fff;
+        font-size: 12px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        text-decoration: none;
+        margin: 5px 0px;
+    }
+
+    .phimbo-carousel-top-item img:hover {
+        opacity: 0.7;
+        width: 100%;
+    }
+
+    .phimbo-carousel-top-item:hover .movie-name-1 {
+        color: #dacb46;
+    }
+
+    .phimbo-carousel-top li {
+        margin-right: 17px;
+    }
+
+    .phimbo_list_carousel {
+        width: 100%;
+        position: relative;
+    }
+
+        .phimbo_list_carousel ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: block;
+        }
+
+        .phimbo_list_carousel li {
+            color: #999;
+            display: block;
+            float: left;
+            margin-right: 22px;
+        }
+
+        .phimbo_list_carousel .prev {
+            top: 100px;
+            position: absolute;
+            padding: 30px 10px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+            .phimbo_list_carousel .prev:hover {
+                background: rgba(0, 0, 0, 0.9);
+                outline: none;
+                cursor: pointer;
+            }
+
+            .phimbo_list_carousel .prev .arrow-icon.left {
+                background: url('/Content/Images/Trangchu/image.png') no-repeat -2px -535px;
+                height: 24px;
+                width: 16px;
+                display: block;
+            }
+
+        .phimbo_list_carousel .next {
+            right: 0px;
+        }
+
+        .phimbo_list_carousel .next {
+            top: 100px;
+            position: absolute;
+            padding: 30px 10px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+            .phimbo_list_carousel .next:hover {
+                background: rgba(0, 0, 0, 0.9);
+                outline: none;
+                cursor: pointer;
+            }
+
+            .phimbo_list_carousel .next .arrow-icon.right {
+                background: url('/Content/Images/Trangchu/image.png') no-repeat -23px -535px;
+                height: 24px;
+                width: 16px;
+                display: block;
+            }
+
+    .header-list-index-3 {
+        background: url('/Content/Images/Trangchu/divider_line.gif') bottom repeat-x;
+        margin-bottom: 5px;
+        width: 71%;
+    }
+
+        .header-list-index-3 .title-list-index {
+            color: #dacb46;
+            text-shadow: 1px 1px 1px #1a1a1a;
+            display: inline-block;
+            font: 30px/40px 'UTMCafetaRegular';
+            text-transform: uppercase;
+        }
+
+        .header-list-index-3 .more-list-index {
+            float: right;
+            display: inline-block;
+            padding: 15px 12px 0px 0px;
+            color: #ddd;
+            font-size: 16px;
+            text-decoration: none;
+            background: url('/Content/Images/Trangchu/viewmore.png') no-repeat right 21px;
+        }
+
+            .header-list-index-3 .more-list-index:hover {
+                color: #dacb46;
+            }
+</style>
